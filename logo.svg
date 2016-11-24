@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 191 184.6" style="enable-background:new 0 0 191 184.6;" xml:space="preserve">
+<style type="text/css">
+	.st0{
+	    stroke-dasharray:2000;
+	    stroke-dashoffset:0;
+	    -webkit-animation:dash 3s linear forwards;
+	    animation:dash 3s linear forwards;
+		fill:none;stroke:#F4C21D;stroke-width:2;
+	}
+
+	@-webkit-keyframes dash{
+		from{
+			stroke-dashoffset:2000;
+		}
+		to{
+			stroke-dashoffset:0
+			
+		}
+	}
+
+</style>
+<path class="st0" d="M17.9,168.9h46.9L17.9,96.3V168.9z M52.5,41.3l-1-1.8c-1.7-3.5-2.6-6.7-2.6-9.4c0-3.8,1.4-6.6,4.3-8.4H41.5
+	c-11.2,0-19.3,6.6-24.3,19.9c-1.6,4.5-2.4,9.1-2.4,13.9c0,6.5,1.3,12.9,3.9,19c0.6,1.6,1.1,2.9,1.7,3.9c0.6,1,1.2,2,1.9,3.1
+	L67.4,150l1.1,1.7c1.6,3.1,2.4,5.7,2.4,7.8c0,2.3-0.9,4.8-2.7,7.4l-1.7,2h8.4v0h62.4l-45.4-67.6L52.5,41.3z M167.1,105.6L125,41.3
+	l-1-1.8c-1.7-3.5-2.6-6.7-2.6-9.4c0-3.8,1.4-6.6,4.3-8.4h-11.7c-0.2,0-0.5,0-0.7,0l0,0H54.9L93,78.6c0.5,0.9,1.1,1.8,1.7,2.8
+	l45.2,68.6l1.1,1.7c1.6,3.1,2.4,5.7,2.4,7.8c0,2.3-0.9,4.8-2.7,7.4l-1.7,2h11.7c4.8,0,9.4-2,13.9-6.1c4.5-4.1,7.8-9.5,9.9-16.3
+	c1.4-4.1,2-8.3,2-12.7C176.5,124.4,173.4,115,167.1,105.6z M172.1,21.7h-44.7l44.7,66.9V21.7z"/>
+</svg>
