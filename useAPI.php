@@ -58,7 +58,7 @@
                  if( isset($_POST['rememberMe'])){
                      setcookie("temp_username",$_POST['username'], time()+3600*24*30);
                  }else{
-                   setcookie ("temp_username", "", time() - 3600);
+                     setcookie ("temp_username", "", time() - 3600);
                  };
                  
               }else{

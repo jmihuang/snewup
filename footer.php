@@ -5,3 +5,4 @@
 <script src="js/main.js"></script>
 <script src="js/lib/cookie.js"></script>
 <script src="js/lib/ajax.js"></script>
+<script src="js/lib/validation.js"></script>

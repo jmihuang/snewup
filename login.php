@@ -9,8 +9,8 @@
     <!-- <p class="welcome_login">Welcome <b>lililala</b></p> -->
     <form action="login.php" method="post" id="checkAccout">
     <div class="login_filed">
-         <i class="fa fa-user" aria-hidden="true"></i>
-         <input type="text" name="username" placeholder="帳號" value="<?php 
+         <i class="fa fa-user prepic" aria-hidden="true"></i>
+         <input type="text" name="account" placeholder="帳號" value="<?php 
             //記我30天
             if(!empty($_COOKIE['temp_username'])){
               echo $_COOKIE['temp_username'];
@@ -19,12 +19,10 @@
          ?>"/>
       </div>
       <div class="login_filed">
-            <i class="fa fa-lock" aria-hidden="true"></i>
+            <i class="fa fa-lock prepic" aria-hidden="true"></i>
         <input type="password" name="password" placeholder="密碼"/>
       </div>
-      <!-- 錯誤訊息 -->
-      <?php echo validation()?>
-      
+
       
 
       <button class="login_btn" type="submit">送出表單</button>
@@ -50,19 +48,56 @@
     ?>
 
 <script>
-  $("#checkAccout").submit(function(event){
-    var data = {
-      "action": "checkAccout"
-    };
-    data = $(this).serialize() + "&" + $.param(data);
-    console.log(data);
-    getJSON("useAPI.php",data,function (data){
-      //登入錯誤訊息
-      if(data.status === 1){
-         window.location.href="index.php";
-      }
-    });
-    return false;
+  $("#checkAccout input").keyup(function(event){    
+    var checkValidatin = vali("#checkAccout");
+    $("#checkAccout").submit(sendAjax);
+    function sendAjax(){
+      if(checkValidatin){
+          var data = {
+            "action": "checkAccout"
+          };
+          data = $(this).serialize() + "&" + $.param(data);
+          getJSON("useAPI.php",data,function (rs){
+            //檢查格式是否正確
+            //登入錯誤訊息
+            
+              if(rs.status === 1){
+                 window.location.href="index.php";
+              }else{
+                 dialog(rs.message);
+              }
+
+          });
+        }
+        return false;
+    }
+
   });
+
+  
+  function vali(formID){
+      var constraints = {
+      account:{
+        format:{
+          required: true,
+          type:'input',
+          pattern: /\w+/,
+          errorMessage: '格式錯誤',
+          emptyMessage: '不能為空值'
+        }
+      },
+      password:{
+        format:{
+          required: true,
+          type:'input',
+          pattern: /(?=^[A-Za-z0-9]{6,12}$)((?=.*[a-z])(?=.*[0-9]))^.*$/,
+          errorMessage: '格式錯誤',
+          emptyMessage: '不能為空值'
+        }
+      }
+    }
+    var checkFormVal = validation(formID,constraints).check();
+    return checkFormVal; 
+  }
 
 </script>

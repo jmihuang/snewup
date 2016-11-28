@@ -111,6 +111,9 @@ header {
 .box_shadow {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); }
 
+.fa {
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
+
 .container {
   margin: 0 auto;
   max-width: 1280px;
@@ -583,6 +586,83 @@ header {
   .nav_wrapper li.active a {
     color: white; }
 
+/*header login navbar*/
+.user_header {
+  position: relative;
+  display: inline-block;
+  height: 50px; }
+  .user_header:hover .user_header_dropdown {
+    box-shadow: black 2px 2px 10px;
+    visibility: visible; }
+  .user_header:hover .user_header_login {
+    background-color: white; }
+
+.user_header_login {
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  display: inline-block;
+  padding: 0 0.6rem;
+  margin-left: 20px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition-property: all;
+  transition-duration: 0.3s; }
+  .user_header_login a {
+    color: rgba(66, 64, 64, 0.9);
+    display: block;
+    text-shadow: rgba(255, 255, 255, 0.3) 1px 1px 0; }
+    .user_header_login a .fa-user {
+      padding-right: 5px; }
+    .user_header_login a .fa-chevron-down {
+      padding-left: 5px; }
+  .user_header_login:hover {
+    background-color: white; }
+
+.user_header_dropdown {
+  cursor: pointer;
+  visibility: hidden;
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  color: #FCC72C;
+  position: absolute;
+  z-index: 1;
+  min-width: 120px;
+  top: 46px;
+  left: 0; }
+
+.user_header_dropdown ::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: 30px;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent white transparent; }
+
+.user_header_dropdown li {
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  display: block;
+  white-space: nowrap;
+  background-color: white;
+  padding: 0.5rem 0.5rem; }
+  .user_header_dropdown li:hover a {
+    color: #FCC72C; }
+
+.user_header_dropdown li + li {
+  border: solid 1px #ddd; }
+
+.user_header_dropdown li:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+
+.user_header_dropdown li:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; }
+
 .form {
   font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
   position: relative;
@@ -619,17 +699,6 @@ header {
 .form button:hover, .form button:active, .form button:focus {
   background: #f2b503; }
 
-.form .errmsg {
-  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-  padding: 2px 4px;
-  margin: 0 0 15px;
-  text-align: left;
-  font-size: 0.75rem;
-  line-height: 1.5rem;
-  color: #c7254e;
-  background-color: #f9f2f4;
-  border-radius: 4px; }
-
 /*svg*/
 .logoSvg {
   position: fixed;
@@ -663,84 +732,6 @@ header {
   margin-top: 20%;
   color: #FCC72C;
   text-align: center; }
-
-/*login navbar*/
-.user_header {
-  position: relative;
-  display: inline-block;
-  height: 36px; }
-  .user_header:hover .log_dropdown {
-    box-shadow: black 2px 2px 10px;
-    visibility: visible; }
-  .user_header:hover .user_header_dropdown {
-    background-color: white; }
-
-.user_header_dropdown {
-  font-size: 0.75rem;
-  line-height: 1.5rem;
-  display: inline-block;
-  padding: 0 0.6rem;
-  margin-left: 20px;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
-  transition-property: all;
-  transition-duration: 0.3s; }
-  .user_header_dropdown a {
-    color: rgba(66, 64, 64, 0.9);
-    display: block;
-    text-shadow: rgba(255, 255, 255, 0.3) 1px 1px 0; }
-    .user_header_dropdown a .fa-user {
-      padding-right: 5px; }
-    .user_header_dropdown a .fa-chevron-down {
-      padding-left: 5px; }
-  .user_header_dropdown:hover {
-    background-color: white; }
-
-.login_box {
-  max-width: 360px;
-  margin: 0 auto 100px; }
-
-.log_dropdown {
-  cursor: pointer;
-  visibility: hidden;
-  font-size: 0.75rem;
-  line-height: 1.5rem;
-  color: #FCC72C;
-  position: absolute;
-  z-index: 1;
-  min-width: 120px;
-  top: 35px;
-  left: 0; }
-
-.log_dropdown ::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 30px;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent white transparent; }
-
-.log_dropdown li {
-  white-space: nowrap;
-  background-color: white;
-  padding: 0.5rem 1rem; }
-  .log_dropdown li:hover a {
-    color: #FCC72C; }
-
-.log_dropdown li + li {
-  border: solid 1px #ddd; }
-
-.log_dropdown li:first-child {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px; }
-
-.log_dropdown li:last-child {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px; }
 
 /*alert log*/
 .alert_btn:hover, .alert_btn:active, .alert_btn:focus {
@@ -825,11 +816,23 @@ header {
 .login_filed {
   position: relative; }
 
-.login_filed i {
+.login_filed .prepic {
   color: rgba(66, 64, 64, 0.9);
   position: absolute;
   top: 18px;
   left: 10px; }
+
+.login_filed .errmsg {
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  position: absolute;
+  top: 18px;
+  right: 10px;
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  color: #c7254e;
+  border-radius: 4px; }
+  .login_filed .errmsg * {
+    display: inline-block; }
 
 .welcome_login {
   margin: 15px 0 0;

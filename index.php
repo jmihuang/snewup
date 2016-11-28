@@ -80,8 +80,11 @@ $("#submitBtn").submit(function(event){
     "action": "inqueryForm"
   };
   data = $(this).serialize() + "&" + $.param(data);
-  getJSON("useAPI.php",data,function (data){
-    console.log(data);
+  getJSON("useAPI.php",data,function (rs){
+    if(rs.status == 1){
+            var msg = data.message;
+            dialog(msg);
+    };
   });
   return false;
 });

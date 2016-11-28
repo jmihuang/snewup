@@ -18,25 +18,32 @@
 		    	  			<?php
 		    	  				if(!isset($_SESSION['username'])&&!isset($_SESSION['token'])){
 
-		    	  					echo '<span class="user_header_dropdown"><a href="login.php"><i class="fa fa-user" aria-hidden="true"></i>登入</a></span>';
+		    	  					echo '
+									<div class="user_header">
+		    	  					<span class="user_header_login"><a href="login.php"><i class="fa fa-user" aria-hidden="true"></i>登入</a>
+		    	  					</span>
+		    	  					</div>';
 		    	  				}else{
 		    	  					echo '
 		    	  					<div class="user_header">
-		    	  					<span class="user_header_dropdown"><a href="#">
+		    	  					<span class="user_header_login"><a href="#">
 		    	  							<i class="fa fa-user" aria-hidden="true"></i>'.$_SESSION['username'].'<i class="fa fa-chevron-down" aria-hidden="true"></i></a>		
-		    	  						    <ul class="log_dropdown">
+		    	  						    <ul class="user_header_dropdown">
 		    	  						  	  <li><a href="#">管理版面</a></li>
 		    	  						  	  <li><a href="?logout=true">登出</a></li>
 		    	  						    </ul>
 		    	  			    		  </span>
-
+		    	  			        </div>
+		
 		    	  			    		  ';
 		    	  				}
 		    	  	    	
 		    	  				//登出
+		   
 		    	  				if( isset($_GET['logout']) && ($_GET['logout'] == true) ){
-		    	  					unset($_SESSION['username']);//清除session
-		    	  					header("Refresh: 1; URL = login.php");
+		    	  					unset($_SESSION['username']);//清除username session
+		    	  					unset($_SESSION['token']);//清除token session
+		    	  					header("Refresh: 1; URL = index.php");
 		    	  				}
 		    	  	    	
 		    	  	    	?>

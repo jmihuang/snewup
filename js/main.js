@@ -8,24 +8,24 @@
     $('.dialog').find('p').html(msg);
    }
 
-   $('.dialog').find('button').click(function (){
-     $('#blackbg').fadeOut();
+   $(document).on('click','.dialog p,#blackbg',function (event){
+      $('#blackbg').fadeOut();
    });
 
 
 
    function loading(evt){
+
      var percentComplete = Math.ceil(evt.loaded / evt.total)*100;
+     console.log(percentComplete);
+      if($('#loadingblackbg').length){
+         $('#loadingblackbg').fadeIn();
+      }else{
+        $('.loading').css('display','block').wrap('<div id="loadingblackbg" class="blackbg">');
+      }
 
-    if($('#loadingblackbg').length){
-       $('#loadingblackbg').fadeIn();
-    }else{
-      $('.loading').css('display','block').wrap('<div id="loadingblackbg" class="blackbg">');
-    }
-
-    if (percentComplete === 100) {
-      console.log(percentComplete);
-        $('#loading').parent().fadeOut();
-    }
+      if (percentComplete === 100) {
+          $('#loading').parent().fadeOut();
+      }
 
    }

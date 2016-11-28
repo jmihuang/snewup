@@ -6,7 +6,7 @@
           {
             var xhr = new window.XMLHttpRequest();
             //Download progress
-            xhr.addEventListener("progress", function(evt){
+            xhr.upload.addEventListener("progress", function(evt){
                   loading(evt);
             }, false);
             return xhr;
@@ -15,8 +15,12 @@
         dataType: "json",
         url: './'+url, //Relative or absolute path to ajax-index.php file
         data: data,
-        success: function(data) {
-          callback(data);
+        beforeSend: function( xhr ) {
+            $('input,button,textarea').prop('disabled', true);
+        },
+        success: function(rs) {
+          callback(rs);
+          $('input,button,textarea').prop('disabled', false);
         }
       });
    }
