@@ -112,7 +112,7 @@
                           'status' => 1,
                           'lastId'=> $lastId,
                           'restdata'=> $userData,
-                          'sendMail'=> $isSend,
+                          'sendMail'=> $isSend ? '送至信箱成功':'送至信箱失敗',
                           'message'=> '感謝您的填寫<br/>表單已成功送出!!'
                    );
 

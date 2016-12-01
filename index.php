@@ -83,18 +83,12 @@ $("#submitBtn").submit(function(event){
   };
   data = $(this).serialize() + "&" + $.param(data);
   getJSON("useAPI.php",data,function (rs){
-    console.log('getdata',rs);
-            //檢查格式是否正確
-            //登入錯誤訊息 
-              if(rs.status === 1){
-                 window.location.href="index.php";
-              }else{
-                 dialog(rs.message);
-              }
-
-          });
+    if(rs.status == 1){
+            var msg = rs.message;
+            dialog(msg);
+    };
+  });
   return false;
 });
-
 
 </script>
