@@ -20,7 +20,7 @@
         },
         success: function(rs) {
           callback(rs);
-          $('input,button,textarea').prop('disabled', false);
+          $('input,button,textarea').delay(800).prop('disabled', false);
         }
       });
    }

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -46,6 +47,11 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block; }
 
+/* =======================================================
+*
+*   字高/距離的韻律 
+*
+* ======================================================= */
 /* The main heading*/
 .heading-1 {
   margin-bottom: 6rem; }
@@ -75,8 +81,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* =======================================================
 *
-* 	Template Style 
-*	Edit this section
+* 	統一樣式 
 *
 * ======================================================= */
 body {
@@ -111,8 +116,64 @@ header {
 .box_shadow {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); }
 
-.fa {
-  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
+.title {
+  position: relative;
+  text-align: center;
+  color: rgba(40, 39, 39, 0.9);
+  line-height: 3rem; }
+
+.title::after {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  top: 80px;
+  left: 50%;
+  width: 100px;
+  margin-left: -50px;
+  height: 2px;
+  background: #FCC72C; }
+
+.sub_title {
+  color: rgba(143, 140, 140, 0.9);
+  margin-top: 3rem; }
+  .sub_title a {
+    color: #FCC72C; }
+    .sub_title a:hover {
+      color: #f2b503; }
+
+.button {
+  width: 200px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+  background-color: #FCC72C;
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  border: none;
+  height: 3rem;
+  padding: 0 1rem; }
+
+.login_btn, .alert_btn, button {
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  height: 3rem;
+  outline: 0;
+  background: #FCC72C;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+  color: #fff;
+  border: 0;
+  padding: 0 3rem;
+  font-size: 14px;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  transition-property: all;
+  transition-duration: 0.3s; }
+
+.login_btn, .alert_btn {
+  width: 100%; }
 
 .container {
   margin: 0 auto;
@@ -630,7 +691,7 @@ header {
   z-index: 1;
   min-width: 120px;
   top: 46px;
-  left: 0; }
+  right: 0; }
 
 .user_header_dropdown ::before {
   content: '';
@@ -699,7 +760,32 @@ header {
 .form button:hover, .form button:active, .form button:focus {
   background: #f2b503; }
 
-/*svg*/
+.blackbg {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999; }
+
+.loading {
+  display: none;
+  margin-top: 20%;
+  color: #FCC72C;
+  text-align: center; }
+
+.alert_btn:hover, .alert_btn:active, .alert_btn:focus {
+  background: #f2b503; }
+
+.alert_btn {
+  margin-top: 15px; }
+
+/* =======================================================
+*
+* 	進網頁的LOGO效果 
+*
+* ======================================================= */
 .logoSvg {
   position: fixed;
   display: none;
@@ -717,90 +803,11 @@ header {
     opacity: 1; }
   100% {
     opacity: 0; } }
-/*mask*/
-.blackbg {
-  background-color: rgba(0, 0, 0, 0.8);
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 999; }
-
-.loading {
-  display: none;
-  margin-top: 20%;
-  color: #FCC72C;
-  text-align: center; }
-
-/*alert log*/
-.alert_btn:hover, .alert_btn:active, .alert_btn:focus {
-  background: #f2b503; }
-
-.alert_btn {
-  margin-top: 15px; }
-
-/*title*/
-.title {
-  position: relative;
-  text-align: center;
-  color: rgba(40, 39, 39, 0.9);
-  line-height: 3rem; }
-
-.title::after {
-  position: absolute;
-  content: '';
-  bottom: 0;
-  top: 80px;
-  left: 50%;
-  width: 100px;
-  margin-left: -50px;
-  height: 2px;
-  background: #FCC72C; }
-
-.sub_title {
-  color: rgba(143, 140, 140, 0.9);
-  margin-top: 3rem; }
-  .sub_title a {
-    color: #FCC72C; }
-    .sub_title a:hover {
-      color: #f2b503; }
-
-/*Button*/
-.button {
-  width: 200px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  outline: none;
-  background-color: #FCC72C;
-  font-size: 0.75rem;
-  line-height: 1.5rem;
-  border: none;
-  height: 3rem;
-  padding: 0 1rem; }
-
-.login_btn, .alert_btn, button {
-  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-  height: 3rem;
-  outline: 0;
-  background: #FCC72C;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  outline: none;
-  color: #fff;
-  border: 0;
-  padding: 0 3rem;
-  font-size: 14px;
-  transition: all 0.3 ease;
-  cursor: pointer;
-  transition-property: all;
-  transition-duration: 0.3s; }
-
-.login_btn, .alert_btn {
-  width: 100%; }
-
+/* =======================================================
+*
+*   登入頁 
+*
+* ======================================================= */
 .log_bg {
   background-color: rgba(66, 64, 64, 0.9); }
 
@@ -825,7 +832,7 @@ header {
 .login_filed .errmsg {
   font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
   position: absolute;
-  top: 18px;
+  top: 13px;
   right: 10px;
   font-size: 0.75rem;
   line-height: 1.5rem;

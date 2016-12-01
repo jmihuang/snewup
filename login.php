@@ -46,21 +46,29 @@
     <?php
       include 'footer.php';
     ?>
+<script src="js/lib/md5.min.js"></script>
 
 <script>
+  var checkLoginValidatin = false;
   $("#checkAccout input").keyup(function(event){    
-    var checkValidatin = vali("#checkAccout");
-    $("#checkAccout").submit(sendAjax);
-    function sendAjax(){
-      if(checkValidatin){
+      checkLoginValidatin = vali("#checkAccout");
+  });
+
+  $("#checkAccout").submit(function (){
+      //再次驗證 ex.空值時為執行keyup event
+      checkLoginValidatin = vali("#checkAccout");
+      if(checkLoginValidatin){
           var data = {
             "action": "checkAccout"
           };
-          data = $(this).serialize() + "&" + $.param(data);
+
+          console.log(md5("j7610737"));
+          var account = $('input[name="account"]').val();
+          var password = md5($('input[name="password"]').val());
+          data = "account="+account+"&password="+password+"&"+$.param(data);
           getJSON("useAPI.php",data,function (rs){
             //檢查格式是否正確
-            //登入錯誤訊息
-            
+            //登入錯誤訊息 
               if(rs.status === 1){
                  window.location.href="index.php";
               }else{
@@ -70,10 +78,7 @@
           });
         }
         return false;
-    }
-
-  });
-
+    });
   
   function vali(formID){
       var constraints = {

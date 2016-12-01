@@ -31,19 +31,30 @@
 
     function checkUserAccout(){
            $tblName = 'admin';
-           $username = $_POST['password'];
-           $tokenStr = $_POST['username'].$_POST['password'];
+           $password = $_POST['password'];
+           $tokenStr = $_POST['account'].$_POST['password'].time();
            $token=md5($tokenStr);
-           $conditions = array(
-             'select' => 'password',
+           
+           //檢查是否有帳號
+            $conditions = array(
+             'select' => 'account',
              'where' => array(
-                'account' => $_POST['username']),
+                'account' => $_POST['account']),
              'return_type'=>'single'
             );
            
             $rows = $GLOBALS['crud']->getRows($tblName,$conditions);
             if($rows){
-              if($rows['password'] === md5($username)){         
+              //有註冊帳號 檢查密碼
+               $pconditions = array(
+                'select' => 'password',
+                'where' => array(
+                   'account' => $_POST['account']),
+                'return_type'=>'single'
+               );
+              
+               $prows = $GLOBALS['crud']->getRows($tblName,$pconditions);
+              if($prows['password'] === $password){         
                   $result = array(
                          'status' => 1,
                          'lanch' => '../index.php',
@@ -52,11 +63,11 @@
                   );
                   //資料正確 寫入session
                  $_SESSION['token'] = $result['token'];//寫入session
-                 $_SESSION['username'] = $_POST['username'];//寫入session
+                 $_SESSION['username'] = $_POST['account'];//寫入session
                   
                  //記我30天
                  if( isset($_POST['rememberMe'])){
-                     setcookie("temp_username",$_POST['username'], time()+3600*24*30);
+                     setcookie("temp_username",$_POST['account'], time()+3600*24*30);
                  }else{
                      setcookie ("temp_username", "", time() - 3600);
                  };
@@ -72,12 +83,15 @@
               $result = array(
                      'status' => 0,
                      'error' => 1,
+                     'send' => $conditions,
                      'message'=> '帳號錯誤!!'
               );
            }
            echo json_encode($result);
     }
 
+
+    //送出聯絡表單
     function insertContactDB(){
               $tblName = 'contact';
               $userData = array(
@@ -96,6 +110,10 @@
                           'restdata'=> $userData,
                           'message'=> '感謝您的填寫<br/>表單已成功送出!!'
                    );
+
+                   //phpMailer
+                   require './sendmail.php';
+
                 }else{
                    $result = array(
                           'status' => 0,

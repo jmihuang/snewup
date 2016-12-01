@@ -75,6 +75,8 @@
 
 })();
 
+
+//表單送出
 $("#submitBtn").submit(function(event){
   var data = {
     "action": "inqueryForm"
