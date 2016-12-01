@@ -51,7 +51,7 @@
            <textarea rows="8" cols="0"  name="comment" placeholder="必填 請簡述訂製需求"></textarea>
         </div>
         <div class="center_align">
-    		<button class="button" type="submit"  id="submitBtn">送出表單</button>
+    		<button class="button" type="submit" >送出表單</button>
     		</div>
     	</form>
       </div>
@@ -83,11 +83,16 @@ $("#submitBtn").submit(function(event){
   };
   data = $(this).serialize() + "&" + $.param(data);
   getJSON("useAPI.php",data,function (rs){
-    if(rs.status == 1){
-            var msg = data.message;
-            dialog(msg);
-    };
-  });
+    console.log('getdata',rs);
+            //檢查格式是否正確
+            //登入錯誤訊息 
+              if(rs.status === 1){
+                 window.location.href="index.php";
+              }else{
+                 dialog(rs.message);
+              }
+
+          });
   return false;
 });
 

@@ -16,6 +16,16 @@
 		    	  <li class="nav_li"><a href="#">聯絡方式</a></li>
 		    	  <li>
 		    	  			<?php
+		    	  			//登出
+		    	  			
+			    	  			if( isset($_GET['logout']) && ($_GET['logout'] == true) ){
+			    	  				unset($_SESSION['username']);//清除username session
+			    	  				unset($_SESSION['token']);//清除token session
+			    	  				$page = $_SERVER['PHP_SELF'];
+			    	  				$sec = "10";
+			    	  				header("Refresh: $sec; url=$page");
+			    	  			}
+		    	  			
 		    	  				if(!isset($_SESSION['username'])&&!isset($_SESSION['token'])){
 
 		    	  					echo '
@@ -38,13 +48,7 @@
 		    	  			    		  ';
 		    	  				}
 		    	  	    	
-		    	  				//登出
-		   
-		    	  				if( isset($_GET['logout']) && ($_GET['logout'] == true) ){
-		    	  					unset($_SESSION['username']);//清除username session
-		    	  					unset($_SESSION['token']);//清除token session
-		    	  					header("Refresh: 1; URL = index.php");
-		    	  				}
+
 		    	  	    	
 		    	  	    	?>
 

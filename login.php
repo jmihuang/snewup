@@ -55,7 +55,7 @@
   });
 
   $("#checkAccout").submit(function (){
-      //再次驗證 ex.空值時為執行keyup event
+      //再次驗證 ex.空值時未執行keyup event
       checkLoginValidatin = vali("#checkAccout");
       if(checkLoginValidatin){
           var data = {

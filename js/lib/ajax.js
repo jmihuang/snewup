@@ -17,9 +17,13 @@
         data: data,
         beforeSend: function( xhr ) {
             $('input,button,textarea').prop('disabled', true);
+            console.log('disabled start');
         },
         success: function(rs) {
+          console.log('success');
           callback(rs);
+        },
+        complete:function(){
           $('input,button,textarea').delay(800).prop('disabled', false);
         }
       });

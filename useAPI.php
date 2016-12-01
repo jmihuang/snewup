@@ -104,15 +104,17 @@
                 );
                 $lastId = $GLOBALS['crud']->create($tblName,$userData);
                 if(!empty($lastId)){
+                   //phpMailer
+                   require './sendmail.php';
+                   $sendMailer = new sendMailer();
+                   $isSend = $sendMailer -> sendFormToMail($_POST);
                    $result = array(
                           'status' => 1,
                           'lastId'=> $lastId,
                           'restdata'=> $userData,
+                          'sendMail'=> $isSend,
                           'message'=> '感謝您的填寫<br/>表單已成功送出!!'
                    );
-
-                   //phpMailer
-                   require './sendmail.php';
 
                 }else{
                    $result = array(
