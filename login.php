@@ -20,7 +20,7 @@
       </div>
       <div class="login_filed">
             <i class="fa fa-lock prepic" aria-hidden="true"></i>
-        <input type="password" name="password" placeholder="密碼"/>
+        <input type="password" name="password" placeholder="密碼(8-12英數)"/>
       </div>
 
       
@@ -50,28 +50,29 @@
 
 <script>
   var checkLoginValidatin = false;
-  $("#checkAccout input").keyup(function(event){    
+
+
+  $("#checkAccout input").change(function(event){    
       checkLoginValidatin = vali("#checkAccout");
   });
 
   $("#checkAccout").submit(function (){
-      //再次驗證 ex.空值時未執行keyup event
+      //驗證
       checkLoginValidatin = vali("#checkAccout");
+      //檢查格式是否正確
       if(checkLoginValidatin){
           var data = {
             "action": "checkAccout"
           };
-
-          console.log(md5("j7610737"));
           var account = $('input[name="account"]').val();
           var password = md5($('input[name="password"]').val());
           data = "account="+account+"&password="+password+"&"+$.param(data);
           getJSON("useAPI.php",data,function (rs){
-            //檢查格式是否正確
-            //登入錯誤訊息 
               if(rs.status === 1){
+                 //成功轉址至首頁
                  window.location.href="index.php";
               }else{
+                 //登入錯誤訊息
                  dialog(rs.message);
               }
 

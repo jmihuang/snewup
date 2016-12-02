@@ -93,45 +93,64 @@
 
     //送出聯絡表單
     function insertContactDB(){
-              $tblName = 'contact';
-              $userData = array(
-                    'Name' => $_POST['name'],
-                    'Company' => $_POST['company'],
-                    'Phone'   => $_POST['phone'],
-                    'Mail'    => $_POST['mail'],
-                    'Date'    => date("Y-m-d H:i:s"),
-                    'Comment' => $_POST['comment']
-                );
-                $lastId = $GLOBALS['crud']->create($tblName,$userData);
-                if(!empty($lastId)){
-                   //phpMailer
-                   require './sendmail.php';
-                   $sendMailer = new sendMailer();
-                   $isSend = $sendMailer -> sendFormToMail($_POST);
-                   $result = array(
-                          'status' => 1,
-                          'lastId'=> $lastId,
-                          'restdata'=> $userData,
-                          'sendMail'=> $isSend ? '送至信箱成功':'送至信箱失敗',
-                          'message'=> '感謝您的填寫<br/>表單已成功送出!!'
-                   );
-
+              //驗證碼是否正確
+              include_once $_SERVER['DOCUMENT_ROOT'] . '/securimage/securimage.php';
+              $captchaVali = checkCaptcha();
+              if($captchaVali){
+                    $tblName = 'contact';
+                    $userData = array(
+                          'Name' => $_POST['name'],
+                          'Company' => $_POST['company'],
+                          'Phone'   => $_POST['phone'],
+                          'Mail'    => $_POST['mail'],
+                          'Date'    => date("Y-m-d H:i:s"),
+                          'Comment' => $_POST['comment']
+                      );
+                    $lastId = $GLOBALS['crud']->create($tblName,$userData);
+                    if(!empty($lastId)){
+                       //phpMailer
+                       require './sendmail.php';
+                       $sendMailer = new sendMailer();
+                       $isSend = $sendMailer -> sendFormToMail($_POST);
+                       $result = array(
+                              'status' => 1,
+                              'lastId'=> $lastId,
+                              'restdata'=> $userData,
+                              'sendMail'=> $isSend ? '送至信箱成功':'送至信箱失敗',
+                              'message'=> '感謝您的填寫<br/>表單已成功送出!!'
+                       );
+                  }else{
+                     $result = array(
+                            'status' => 0,
+                            'message'=> '新增失敗'
+                     );
+                  } 
                 }else{
-                   $result = array(
-                          'status' => 0,
-                          'message'=> '新增失敗'
-                   );
-                } 
+                     $result = array(
+                            'status' => 2,
+                            'message'=> '驗證碼錯誤!'
+                     );
+                }
                 echo json_encode($result); 
       }
 
 
    function inquerySheet(){
-         $ajaxUrl = new useAPI;
-         $sql = "SELECT * FROM `contact`";
-         $ajaxUrl->setData($sql);//寫入
-         $ajaxUrl->showData();//回傳
+
    }
+
+
+   function checkCaptcha(){
+      if(isset($_POST["captcha"])&&!empty($_POST["captcha"])){
+        $securimage = new Securimage();
+        if ($securimage->check($_POST['captcha']) == false) {
+          return false;
+        }else{
+          return true;
+        }
+      }
+    };
+
 
 
 
