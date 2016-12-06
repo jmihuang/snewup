@@ -1,14 +1,17 @@
 <?php 	
-		
+		date_default_timezone_set("Asia/Taipei");
+
 		/**
 		*啟動session
 		**/
 
 		if( !isset($_SESSION) ){
-			startSession(30*60);//啟動session
+			$mins = 3;
+			startSession($mins*60);//啟動session
 		}
 
 		function startSession($expire = 0){
+			
 		     //沒有設定時間 以php.ini為主
 		     if( $expire == 0 ){
 		        $expire = ini_get('session.gc_maxlifetime');
@@ -27,6 +30,7 @@
 		        session_start();
 		        setcookie('PHPSESSID', session_id(), time() + $expire);
 
+		       
 		     }else{
 		        session_set_cookie_params($expire);
 		        session_start();
@@ -44,32 +48,5 @@
 		  return $data;
 		}
 
-		/**
-		*form validation
-		**/
-	
-		function validation(){
-
-			$errmsg ='';
-
-			if( $_SERVER['REQUEST_METHOD']=="POST" ){
-				//username
-				if(isset($_POST['username']) && empty($_POST['username'])){
-					$errmsg .= '<div><i class="fa fa-exclamation-circle"></i>帳號為必填欄位</div>';
-				}
-
-				//password
-				if(isset($_POST['password']) && empty($_POST['password'])){
-					$errmsg .= '<div><i class="fa fa-exclamation-circle"></i>密碼為必填欄位</div>';
-				}
-			}
-
-			if( $errmsg !== ''){
-				return '<div class="errmsg">'.$errmsg.'</div>';
-			}
-			
-
-
-		}
 
  ?>

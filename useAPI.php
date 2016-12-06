@@ -1,8 +1,8 @@
 <?php 
-
-    session_start();
-    header("Content-Type:text/html; charset=utf-8");
+    include_once "fn.php";
     include_once "connMysql.php";
+    header("Content-Type:text/html; charset=utf-8");
+
 
     /*
     *參照教學:https://gist.github.com/jonsuh/3739844
@@ -29,6 +29,8 @@
       return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
     }
 
+
+    //登入頁
     function checkUserAccout(){
            $tblName = 'admin';
            $password = $_POST['password'];
@@ -61,10 +63,10 @@
                          'token' => $token,
                          'message'=> '登入成功!!'
                   );
-                  //資料正確 寫入session
+                 //資料正確 寫入session    
                  $_SESSION['token'] = $result['token'];//寫入session
                  $_SESSION['username'] = $_POST['account'];//寫入session
-                  
+
                  //記我30天
                  if( isset($_POST['rememberMe'])){
                      setcookie("temp_username",$_POST['account'], time()+3600*24*30);

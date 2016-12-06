@@ -1,5 +1,5 @@
 
-   function dialog(msg){
+  function dialog(msg){
       if($('#blackbg').length){
          $('#blackbg').fadeIn();
       }else{
@@ -23,5 +23,17 @@
       }
       if (percentComplete === 100) {
           $('#loading').parent().fadeOut();
+      }
+   }
+
+
+   //mobile menu
+
+   function openMenu(){
+      if($( "#nav_mobile" ).hasClass( "m_flip" )){
+         $('#nav_mobile').removeClass('m_flip');
+      }else{
+        $('#nav_mobile').addClass('m_flip');   
+    console.log('openMenu');
       }
    }

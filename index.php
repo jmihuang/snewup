@@ -4,6 +4,7 @@
 ?>
 
 <body>
+     <!-- 開頭動畫 -->
     <div class="logoSvg" id="logoSvg">
        <div style=" width:30%; margin:0 auto">
     	<object><embed src="logo.svg"></object>
